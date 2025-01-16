@@ -24,8 +24,6 @@
             <scope>provided</scope>
         </dependency>
 
-        </dependency>
-
         <!-- JUnit Dependency for Unit Testing -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -80,8 +78,8 @@
             </plugin>
         </plugins>
     </build>
-  <properties>
+    <properties>
            <sonar.organization>sudha2804</sonar.organization>
            <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-  </properties>
+    </properties>
 </project>
