@@ -47,28 +47,14 @@ jobs:
     needs: build_and_test
     if: ${{ needs.build_and_test.result == 'success' }}  # Run only if build and test succeed
     steps:
-      # Checkout the repository
-      - name: Checkout Code
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      # Set up Java
-      - name: Set up Java
-        uses: actions/setup-java@v3
+      - name: Run SonarQube analysis
+        uses: SonarSource/sonarcloud-github-action@v1
         with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      # SonarCloud Analysis (separate job)
-      - name: SonarCloud Analysis
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_ORG: your-organization # Replace with your actual SonarCloud organization
-          SONAR_HOST_URL: https://sonarcloud.io
-        run: |
-          mvn clean verify sonar:sonar \
-            -Dsonar.organization=${{ secrets.SONAR_ORG }} \
-            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+          sonar-host-url: 'https://sonarcloud.io'
 
   upload_artifact:
     # This job will also run on the self-hosted runner with the "staging" label.
@@ -92,10 +78,11 @@ jobs:
     # This job will deploy to both staging and production environments based on the matrix configuration.
     # The staging environment will use the self-hosted runner with the "staging" label.
     # The production environment will use the self-hosted runner with the "production" label.
-    needs: [sonar_analysis, upload_artifact]
+    runs-on: [self-hosted, ${{ matrix.environment }}]  # Use dynamic environment (staging or production)
+    needs: [sonar_analysis, upload_artifact]  # Waits for SonarQube and Artifactory jobs to complete
     strategy:
       matrix:
-        environment: [staging, production]
+        environment: [staging, production]  # Deploy to both staging and production environments
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
