@@ -88,8 +88,8 @@ jobs:
                   <servers>
                     <server>
                       <id>new-hello-world-libs-release</id>
-                      <username>${{ secrets.JFROG1_USERNAME }}</username>
-                      <password>${{ secrets.JFROG1_API_KEY }}</password>
+                      <username>${{ secrets.JFROG_TOKEN_NAME}}</username>
+                      <password>${{ secrets.JFROG_TOKEN }}</password>
                     </server>
                   </servers>
                 </settings>" > ~/.m2/settings.xml
