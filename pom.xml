@@ -10,6 +10,13 @@
     <packaging>war</packaging>
 
     <dependencies>
+    <distributionManagement>
+      <repository>
+         <id>new-hello-world-libs-release</id>
+         <name>ip-172-31-33-114-releases</name>
+         <url>http://13.127.204.172:8081/artifactory/hello-world-war-libs-release</url>
+      </repository>
+    </distributionManagement>
         <!-- Servlet API Dependency -->
         <dependency>
             <groupId>javax.servlet</groupId>
