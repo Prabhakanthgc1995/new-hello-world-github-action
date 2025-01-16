@@ -6,23 +6,24 @@
 
     <groupId>com.example</groupId>
     <artifactId>my-helloworld</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0.${env.GITHUB_RUN_NUMBER}</version>
     <packaging>war</packaging>
-
+<distributionManagement>
+    <repository>
+        <id>my-github-actions</id>
+        <name>my-github-actions-libs-release</name>
+        <url>http://35.154.195.76:8082/artifactory/my-github-actions-libs-release</url>
+    </repository>
+</distributionManagement>
     <dependencies>
-    <distributionManagement>
-      <repository>
-         <id>new-hello-world-libs-release</id>
-         <name>ip-172-31-33-114-releases</name>
-         <url>http://13.127.204.172:8081/artifactory/hello-world-war-libs-release</url>
-      </repository>
-    </distributionManagement>
         <!-- Servlet API Dependency -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.1</version>
             <scope>provided</scope>
+        </dependency>
+
         </dependency>
 
         <!-- JUnit Dependency for Unit Testing -->
