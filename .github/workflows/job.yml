@@ -87,7 +87,7 @@ jobs:
           echo "<settings>
                   <servers>
                     <server>
-                      <id>new-hello-world-libs-release</id>
+                      <id>my-repo</id>
                       <username>${{ secrets.JFROG_USERNAME }}</username>
                       <password>${{ secrets.JFROG_TOKEN }}</password>
                     </server>
