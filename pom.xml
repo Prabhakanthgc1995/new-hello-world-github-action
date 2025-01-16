@@ -10,9 +10,9 @@
     <packaging>war</packaging>
 <distributionManagement>
     <repository>
-        <id>my-github-actions</id>
-        <name>my-github-actions-libs-release</name>
-        <url>http://35.154.195.76:8082/artifactory/my-github-actions-libs-release</url>
+        <id>new-hello-world</id>
+        <name>new-hello-world-libs-release</name>
+        <url>http://65.1.64.36:8082/artifactory/new-hello-world-libs-release/</url>
     </repository>
 </distributionManagement>
     <dependencies>
